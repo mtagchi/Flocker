@@ -1,4 +1,4 @@
-# sam
+# Flocker
 
 ## Project setup
 ```

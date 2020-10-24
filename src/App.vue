@@ -2,20 +2,22 @@
   <v-app>
     <app-bar/>
     <v-main>
-      <hello-world/>
+      <div id="nav" align="center">
+        <router-link :to="{ name: 'Home' }">HOME</router-link> | 
+        <router-link :to="{ name: 'About'}">ABOUT</router-link>
+      </div>
+      <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import AppBar from '@/components/organisms/AppBar'
-import HelloWorld from '@/components/HelloWorld'
 
 export default {
   name: 'App',
   components: {
-    AppBar,
-    HelloWorld
+    AppBar
   },
 
   data: () => ({

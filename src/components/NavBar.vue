@@ -1,11 +1,14 @@
 <template>
-  <div>
-    a
-  </div>
+    <head-bar/>
 </template>
 
 <script>
+import HeadBar from '@/components/HeadBar'
+
 export default {
-  name: 'NavBar'
+  name: 'AppBar',
+  components: {
+    HeadBar
+  }
 }
 </script>

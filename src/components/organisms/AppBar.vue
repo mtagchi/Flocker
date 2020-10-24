@@ -1,9 +1,9 @@
 <template>
-    <head-bar/>
+  <head-bar/>
 </template>
 
 <script>
-import HeadBar from '@/components/HeadBar'
+import HeadBar from '@/components/organisms/HeadBar'
 
 export default {
   name: 'AppBar',

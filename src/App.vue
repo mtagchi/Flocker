@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <app-bar/>
+    <head-bar/>
     <v-main>
       <div id="nav" align="center">
         <router-link :to="{ name: 'Home' }">HOME</router-link> | 
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import AppBar from '@/components/organisms/AppBar'
+import HeadBar from '@/components/organisms/HeadBar'
 
 export default {
   name: 'App',
   components: {
-    AppBar
+    HeadBar
   },
 
   data: () => ({

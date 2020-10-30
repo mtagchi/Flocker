@@ -1,28 +1,24 @@
 <template>
   <v-app-bar
     app
-    color="#F5F4F1"
+    color="secondary"
   >
     <logo/>
     <v-spacer/>
-    <v-btn
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-      text
-    >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
+    <login-btn/>
+
   </v-app-bar>
 </template>
 
 <script>
 import Logo from '@/components/atoms/Logo'
+import LoginBtn from '@/components/atoms/LoginBtn'
 
 export default {
   name: 'HeadBar',
   components: {
-    Logo
+    Logo,
+    LoginBtn
   }
 }
 </script>

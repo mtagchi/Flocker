@@ -4,7 +4,7 @@
     <v-main>
       <div id="nav" align="center">
         <router-link :to="{ name: 'Home' }">HOME</router-link> | 
-        <router-link :to="{ name: 'About'}">ABOUT</router-link> |
+        <router-link :to="{ name: 'About'}">ABOUT</router-link>
       </div>
       <router-view/>
     </v-main>
@@ -18,12 +18,8 @@ export default {
   name: 'App',
   components: {
     HeadBar
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  }
+}
 </script>
 
 <style lang="scss">

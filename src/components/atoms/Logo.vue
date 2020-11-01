@@ -8,7 +8,7 @@
       transition="scale-transition"
       width="40"
     />
-    <span class="logo font-weight-bold headline brown--text text--darken-4">Flocker</span>
+    <span class="logo unselectable font-weight-bold headline brown--text text--darken-4">Flocker</span>
   </div>
 </template>
 
@@ -19,7 +19,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.logo {
-  // font-family: ;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+span.logo {
+  font-family: "Roboto Slab", "Roboto", sans-serif !important;
 }
 </style>

@@ -5,7 +5,12 @@
   >
     <logo/>
     <v-spacer/>
-    <login-btn/>
+    <login-btn v-if="false"/>
+    <v-menu v-else offset-y>
+      <template>
+        <v-btn><user-icon/></v-btn>
+      </template>
+    </v-menu>
 
   </v-app-bar>
 </template>
@@ -13,12 +18,14 @@
 <script>
 import Logo from '@/components/atoms/Logo'
 import LoginBtn from '@/components/atoms/LoginBtn'
+import UserIcon from '@/components/atoms/UserIcon'
 
 export default {
   name: 'HeadBar',
   components: {
     Logo,
-    LoginBtn
+    LoginBtn,
+    UserIcon
   }
 }
 </script>

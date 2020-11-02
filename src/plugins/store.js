@@ -25,7 +25,9 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user.uid = user.uid
       state.user.displayName = user.displayName
+      state.user.username = user.username
       state.user.photoURL = user.photoURL
+      state.status = user.uid ? true : false
     },
     setUsername(state, username) {
       state.user.username = username

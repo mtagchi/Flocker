@@ -11,21 +11,30 @@
       min-width="40px"
       rounded
       offset-y
+      :close-on-content-click="false"
     >
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
           <user-icon :user="user"/>
         </v-btn>
       </template>
-      <v-card width="144">
+      <v-card width="168">
         <v-list>
           <v-list-item>
-            <v-list-item-icon class="mt-1 mb-1 mr-3">
-              <user-icon :user="user"/>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <span>{{ user.displayName }}</span>
-              <span>{{ user.username }}</span>
+            <a :href="'https://twitter.com/' + user.username">
+              <v-list-item-icon class="mt-1 mb-1 mr-3">
+                <user-icon :user="user"/>
+              </v-list-item-icon>
+            </a>
+            <v-list-item-content class="pt-1 pb-1">
+              <span class="text-truncate">{{ user.displayName }}</span>
+              <v-hover v-slot="{ hover }">
+                <a
+                  class="body-2 text-decoration-none text-truncate"
+                  :class="{ 'text-decoration-underline': hover }"
+                  :href="'https://twitter.com/' + user.username"
+                >@{{ user.username }}</a>
+              </v-hover>
             </v-list-item-content>
           </v-list-item>
         </v-list>

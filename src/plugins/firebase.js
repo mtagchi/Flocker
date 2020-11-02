@@ -16,12 +16,21 @@ const firebaseConfig = {
 export default {
   init() {
     firebase.initializeApp(firebaseConfig)
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   },
   login() {
     const provider = new firebase.auth.TwitterAuthProvider()
-    firebase.auth().signInWithPopup(provider).then((userCredential) => {
-      store.commit('setUsername', userCredential.additionalUserInfo.username)
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      let user = result.user
+      if (user) {
+        const currentUser = {
+          uid: user.uid,
+          displayName: user.displayName,
+          username: result.additionalUserInfo.username,
+          photoURL: user.photoURL
+        }
+        store.commit('setUser', currentUser)
+      }
     })
   },
   logout() {
@@ -31,7 +40,6 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {}
       store.commit('setUser', user)
-      store.commit('isLoggedIn', user.uid)
     })
   }
 }

@@ -31,6 +31,7 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {}
       store.commit('setUser', user)
+      store.commit('isLoggedIn', user.uid)
     })
   }
 }

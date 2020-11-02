@@ -10,11 +10,15 @@ export default new Vuex.Store({
       displayName: "",
       username: "",
       photoURL: ""
-    }
+    },
+    status: false
   },
   getters: {
     user(state) {
       return state.user
+    },
+    isLoggedIn(state) {
+      return state.status
     }
   },
   mutations: {
@@ -25,6 +29,9 @@ export default new Vuex.Store({
     },
     setUsername(state, username) {
       state.user.username = username
+    },
+    isLoggedIn(state, status) {
+      state.status = status
     }
   }
 })

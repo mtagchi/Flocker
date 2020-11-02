@@ -6,7 +6,7 @@
     <logo/>
     <v-spacer/>
     <v-menu
-      v-if="user"
+      v-if="isLoggedIn"
       bottom
       min-width="40px"
       rounded
@@ -59,15 +59,20 @@ export default {
     LoginBtn,
     UserIcon
   },
+  created: () => {
+    firebase.onAuth();
+  },
   computed: {
     user() {
-      console.log(this.$store.getters.user)
       return this.$store.getters.user
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
     }
   },
   methods: {
     logout() {
-      firebase.logOut()
+      firebase.logout()
     }
   }
 }

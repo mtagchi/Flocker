@@ -6,7 +6,7 @@
     <logo/>
     <v-spacer/>
     <v-menu
-      v-if="user.uid"
+      v-if="user"
       bottom
       min-width="40px"
       rounded
@@ -47,8 +47,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import store from '@/plugins/store/'
+import firebase from '@/plugins/firebase'
 import Logo from '@/components/atoms/Logo'
 import LoginBtn from '@/components/atoms/LoginBtn'
 import UserIcon from '@/components/atoms/UserIcon'
@@ -62,12 +61,13 @@ export default {
   },
   computed: {
     user() {
-      return store.state.user
+      console.log(this.$store.getters.user)
+      return this.$store.getters.user
     }
   },
   methods: {
     logout() {
-      firebase.auth().signOut()
+      firebase.logOut()
     }
   }
 }

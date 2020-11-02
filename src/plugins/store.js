@@ -11,13 +11,17 @@ export default new Vuex.Store({
       username: "",
       photoURL: ""
     }
-
+  },
+  getters: {
+    user(state) {
+      return state.user
+    }
   },
   mutations: {
-    setUser(state, currentUser) {
-      state.user.uid = currentUser.uid
-      state.user.displayName = currentUser.displayName
-      state.user.photoURL = currentUser.photoURL
+    setUser(state, user) {
+      state.user.uid = user.uid
+      state.user.displayName = user.displayName
+      state.user.photoURL = user.photoURL
     },
     setUsername(state, username) {
       state.user.username = username

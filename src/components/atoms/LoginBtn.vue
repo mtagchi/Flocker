@@ -10,22 +10,18 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import store from '@/plugins/store/'
+import firebase from '@/plugins/firebase'
 
 export default {
   name: 'LoginBtn',
   computed: {
     user() {
-      return store.state.user
+      return this.$store.getters.user
     }
   },
   methods: {
     login() {
-      const provider = new firebase.auth.TwitterAuthProvider()
-      firebase.auth().signInWithPopup(provider).then((userCredential) => {
-        store.commit('setUsername', userCredential.additionalUserInfo.username)
-      })
+      firebase.login()
     }
   }
 }

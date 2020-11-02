@@ -8,13 +8,11 @@
 </template>
 
 <script>
-import store from '@/plugins/store/'
-
 export default {
   name: 'UserIcon',
   computed: {
     user() {
-      return store.state.user
+      return this.$store.getters.user
     }
   }
 }

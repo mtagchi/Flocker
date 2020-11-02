@@ -8,10 +8,14 @@
 </template>
 
 <script>
+import store from '@/plugins/store/'
+
 export default {
   name: 'UserIcon',
-  props: {
-    user: {}
+  computed: {
+    user() {
+      return store.state.user
+    }
   }
 }
 </script>

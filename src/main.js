@@ -24,9 +24,9 @@ firebase.analytics()
 const app = () => {
   firebase.auth().onAuthStateChanged(currentUser => {
     if (currentUser) {
-      store.commit("setUser", currentUser)
+      store.commit('setUser', currentUser)
     } else {
-      store.commit("setUser", null)
+      store.commit('setUser', null)
     }
   }),
   new Vue({

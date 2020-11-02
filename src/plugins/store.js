@@ -8,6 +8,7 @@ export default new Vuex.Store({
     user: {
       uid: "",
       displayName: "",
+      username: "",
       photoURL: ""
     }
 
@@ -17,6 +18,9 @@ export default new Vuex.Store({
       state.user.uid = currentUser.uid
       state.user.displayName = currentUser.displayName
       state.user.photoURL = currentUser.photoURL
+    },
+    setUsername(state, username) {
+      state.user.username = username
     }
   }
 })

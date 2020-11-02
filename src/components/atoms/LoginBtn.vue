@@ -11,16 +11,21 @@
 
 <script>
 import firebase from 'firebase'
+import store from '@/plugins/store/'
 
 export default {
   name: 'LoginBtn',
-  props: {
-    user: {}
+  computed: {
+    user() {
+      return store.state.user
+    }
   },
   methods: {
     login() {
       const provider = new firebase.auth.TwitterAuthProvider()
-      firebase.auth().signInWithPopup(provider)
+      firebase.auth().signInWithPopup(provider).then((userCredential) => {
+        store.commit('setUsername', userCredential.additionalUserInfo.username)
+      })
     }
   }
 }

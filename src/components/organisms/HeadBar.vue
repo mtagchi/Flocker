@@ -25,7 +25,7 @@
             </v-list-item-icon>
             <v-list-item-content>
               <span>{{ user.displayName }}</span>
-              <span>{{ user.uid }}</span>
+              <span>{{ user.username }}</span>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -48,6 +48,7 @@
 
 <script>
 import firebase from 'firebase'
+import store from '@/plugins/store/'
 import Logo from '@/components/atoms/Logo'
 import LoginBtn from '@/components/atoms/LoginBtn'
 import UserIcon from '@/components/atoms/UserIcon'
@@ -59,13 +60,10 @@ export default {
     LoginBtn,
     UserIcon
   },
-  data: () => ({
-    user: {}
-  }),
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.user = user ? user : {}
-    })
+  computed: {
+    user() {
+      return store.state.user
+    }
   },
   methods: {
     logout() {

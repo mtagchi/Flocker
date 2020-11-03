@@ -1,6 +1,6 @@
-import firebase from "firebase"
-import "@firebase/auth"
-import store from "@/plugins/store"
+import firebase from 'firebase'
+import '@firebase/auth'
+import store from '@/plugins/store'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -16,12 +16,13 @@ const firebaseConfig = {
 export default {
   init() {
     firebase.initializeApp(firebaseConfig)
+    firebase.firestore()
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   },
-  login() {
+  async login() {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider).then((result) => {
-      let user = result.user
+      const user = result.user
       if (user) {
         const currentUser = {
           uid: user.uid,
@@ -29,7 +30,7 @@ export default {
           username: result.additionalUserInfo.username,
           photoURL: user.photoURL
         }
-        store.commit('setUser', currentUser)
+        store.dispatch('setUser', { user: currentUser})
       }
     })
   },
@@ -39,7 +40,7 @@ export default {
   onAuth() {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {}
-      store.commit('setUser', user)
+      store.dispatch('setUser', { user: user })
     })
   }
 }

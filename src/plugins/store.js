@@ -35,5 +35,10 @@ export default new Vuex.Store({
     isLoggedIn(state, status) {
       state.status = status
     }
+  },
+  actions: {
+    setUser({ commit }, { user }) {
+      commit('setUser', user)
+    }
   }
 })

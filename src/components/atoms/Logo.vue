@@ -5,12 +5,12 @@
         alt="Flocker"
         class="shrink mr-2 d-none d-sm-flex"
         contain
-        src="/favicon/flocker.png"
+        src="/img/logo.png"
         transition="scale-transition"
         width="40"
         height="40"
       />
-      <span class="logo unselectable font-weight-bold headline brown--text text--darken-3">Flocker</span>
+      <span class="logo unselectable font-weight-bold headline brown--text text--darken-2">Flocker</span>
     </div>
   </router-link>
 </template>

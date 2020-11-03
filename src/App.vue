@@ -12,17 +12,12 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import HeadBar from '@/components/organisms/HeadBar'
 
 export default {
   name: 'App',
   components: {
     HeadBar
-  },
-  created: () => {
-    this.database = firebase.database()
-    this.user = this.firebase.ref('users')
   }
 }
 </script>

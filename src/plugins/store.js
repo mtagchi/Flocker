@@ -25,7 +25,7 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user.uid = user.uid
       state.user.displayName = user.displayName
-      state.user.username = user.username
+      // state.user.username = user.username
       state.user.photoURL = user.photoURL
       state.status = user.uid ? true : false
     },
@@ -39,6 +39,7 @@ export default new Vuex.Store({
   actions: {
     setUser({ commit }, { user }) {
       commit('setUser', user)
+      commit('setUsername', user.username)
     }
   }
 })

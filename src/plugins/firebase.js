@@ -19,18 +19,20 @@ export default {
     firebase.firestore()
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   },
-  async login() {
+  login() {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider).then((result) => {
-      const user = result.user
-      if (user) {
+      if (result.user) {
         const currentUser = {
-          uid: user.uid,
-          displayName: user.displayName,
+          uid: result.user.uid,
+          displayName: result.user.displayName,
           username: result.additionalUserInfo.username,
-          photoURL: user.photoURL
+          photoURL: result.user.photoURL
         }
-        store.dispatch('setUser', { user: currentUser})
+        store.dispatch('setUser', { user: currentUser })
+        const database = firebase.firestore()
+        const users = database.collection('users')
+        users.doc(currentUser.uid).set({ currentUser })
       }
     })
   },
@@ -38,9 +40,19 @@ export default {
     firebase.auth().signOut()
   },
   onAuth() {
-    firebase.auth().onAuthStateChanged(user => {
-      user = user ? user : {}
-      store.dispatch('setUser', { user: user })
+    firebase.auth().onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        const database = firebase.firestore()
+        database.collection('users').doc(currentUser.uid).get().then((doc) => {
+          if (doc.exists) {
+            const user = doc.data().currentUser
+            store.dispatch('setUser', { user: user })
+          }
+        })
+      } else {
+        const user = {}
+        store.dispatch('setUser', { user: user })
+      }
     })
   }
 }

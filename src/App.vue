@@ -18,10 +18,10 @@ export default {
   name: 'App',
   components: {
     HeadBar
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  }
+}
 </script>
+
+<style lang="scss">
+@import "@/style/main.scss";
+</style>

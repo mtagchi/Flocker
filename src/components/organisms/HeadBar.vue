@@ -33,6 +33,7 @@
                   class="body-2 text-decoration-none text-truncate"
                   :class="{ 'text-decoration-underline': hover }"
                   :href="'https://twitter.com/' + user.username"
+                  target="_blank"
                 >@{{ user.username }}</a>
               </v-hover>
             </v-list-item-content>

@@ -2,22 +2,21 @@
   <v-app>
     <head-bar/>
     <v-main>
-      <div id="nav" align="center">
-        <router-link :to="{ name: 'Home' }">HOME</router-link> | 
-        <router-link :to="{ name: 'About'}">ABOUT</router-link>
-      </div>
       <router-view/>
     </v-main>
+    <foot-bar/>
   </v-app>
 </template>
 
 <script>
 import HeadBar from '@/components/organisms/HeadBar'
+import FootBar from '@/components/molecules/FootBar'
 
 export default {
   name: 'App',
   components: {
-    HeadBar
+    HeadBar,
+    FootBar
   }
 }
 </script>

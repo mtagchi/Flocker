@@ -8,7 +8,7 @@
         width="18"
         height="24"
       />
-      <strong>Flocker</strong>
+      <strong class="brown--text text--darken-2">Flocker</strong>
     </v-row>
   </v-footer>
 </template>

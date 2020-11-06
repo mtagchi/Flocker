@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    color="twitter"
+    color="primary"
     class="white--text"
     @click="login"
   >

@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row wrap align="center" class="cta">
       <v-col cols="6" align="center" class="cta-left">
-        <h1>Online to Offline</h1>
+        <h1>ようこそ、新しい広場へ</h1>
         <p>FlockerはTwitterユーザーのための飲み会企画サービスです</p>
         <v-btn width="168" color="primary">飲み会を開く</v-btn>
       </v-col>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Home',
   components: {
@@ -25,7 +27,11 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn
-    }
+    },
+    events() {
+      const database = firebase.firestore()
+      return database.collection('events')
+    },
   }
 }
 </script>

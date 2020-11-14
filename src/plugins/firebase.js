@@ -5,7 +5,7 @@ import store from '@/plugins/store'
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
   authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
+  dbURL: process.env.VUE_APP_FIREBASE_db_URL,
   projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGEING_SENDERID,
@@ -30,8 +30,8 @@ export default {
           photoURL: result.user.photoURL
         }
         store.dispatch('setUser', { user: currentUser })
-        const database = firebase.firestore()
-        const users = database.collection('users')
+        const db = firebase.firestore()
+        const users = db.collection('users')
         users.doc(currentUser.uid).set({ currentUser })
       }
     })
@@ -42,8 +42,8 @@ export default {
   onAuth() {
     firebase.auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
-        const database = firebase.firestore()
-        database.collection('users').doc(currentUser.uid).get().then((doc) => {
+        const db = firebase.firestore()
+        db.collection('users').doc(currentUser.uid).get().then((doc) => {
           if (doc.exists) {
             const user = doc.data().currentUser
             store.dispatch('setUser', { user: user })

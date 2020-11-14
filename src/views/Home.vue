@@ -13,7 +13,16 @@
         />
       </v-col>
     </v-row>
+
     <h2 class="latest-events-title px-5 d-flex align-center justify-space-between">新着イベント</h2>
+    <template v-if="events.length">
+      <v-card v-for="e in events" :key="e.id">
+        <v-card-text>{{ e }}</v-card-text>
+      </v-card>
+    </template>
+    <template v-else>
+      <span>No data.</span>
+    </template>
   </v-container>
 </template>
 
@@ -22,16 +31,23 @@ import firebase from 'firebase'
 
 export default {
   name: 'Home',
-  components: {
+  data: () => {
+    return {
+      events: []
+    }
+  },
+  async mounted () {
+    const db = firebase.firestore()
+    db.collection('events').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.events.push(doc.data())
+      })
+    })
   },
   computed: {
-    isLoggedIn() {
+    isLoggedIn () {
       return this.$store.getters.isLoggedIn
-    },
-    events() {
-      const database = firebase.firestore()
-      return database.collection('events')
-    },
+    }
   }
 }
 </script>

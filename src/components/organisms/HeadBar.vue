@@ -70,7 +70,7 @@ export default {
     UserIcon
   },
   created: () => {
-    firebase.onAuth();
+    firebase.onAuth()
   },
   computed: {
     user() {

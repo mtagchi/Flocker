@@ -29,7 +29,7 @@ export default {
           username: result.additionalUserInfo.username,
           photoURL: result.user.photoURL
         }
-        store.dispatch('setUser', { user: currentUser })
+        store.dispatch('user/auth', { user: currentUser })
         const db = firebase.firestore()
         const users = db.collection('users')
         users.doc(currentUser.uid).set({ currentUser })

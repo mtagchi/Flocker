@@ -52,7 +52,7 @@
         </v-list>
       </v-card>
     </v-menu>
-    <login-btn v-else :user="user"/>
+    <login-btn v-else :user="user" v-on:login="login"/>
   </v-app-bar>
 </template>
 
@@ -81,6 +81,9 @@ export default {
     }
   },
   methods: {
+    login () {
+      firebase.login()
+    },
     logout () {
       firebase.logout()
     }

@@ -73,15 +73,15 @@ export default {
     firebase.onAuth()
   },
   computed: {
-    user() {
-      return this.$store.getters.user
+    user () {
+      return this.$store.getters['user/get']
     },
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn
+    isLoggedIn () {
+      return this.$store.getters['user/isLoggedIn']
     }
   },
   methods: {
-    logout() {
+    logout () {
       firebase.logout()
     }
   }

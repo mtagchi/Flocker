@@ -16,8 +16,8 @@ export default {
     firebase.onAuth();
   },
   computed: {
-    user() {
-      return this.$store.getters.user
+    user () {
+      return this.$store.getters['user/get']
     }
   }
 }

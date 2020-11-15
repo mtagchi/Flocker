@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     user: {
       uid: "",
@@ -9,10 +10,10 @@ export default {
     status: false
   },
   getters: {
-    user(state) {
+    get (state) {
       return state.user
     },
-    isLoggedIn(state) {
+    isLoggedIn (state) {
       return state.status
     }
   },
@@ -31,7 +32,7 @@ export default {
     }
   },
   actions: {
-    setUser ({ commit }, { user }) {
+    auth ({ commit }, { user }) {
       commit('setUser', user)
       commit('setUsername', user.username)
     }

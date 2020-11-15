@@ -46,12 +46,12 @@ export default {
         db.collection('users').doc(currentUser.uid).get().then((doc) => {
           if (doc.exists) {
             const user = doc.data().currentUser
-            store.dispatch('setUser', { user: user })
+            store.dispatch('user/auth', { user: user })
           }
         })
       } else {
         const user = {}
-        store.dispatch('setUser', { user: user })
+        store.dispatch('user/auth', { user: user })
       }
     })
   }

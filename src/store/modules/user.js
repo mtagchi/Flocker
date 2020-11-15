@@ -1,9 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
   state: {
     user: {
       uid: "",
@@ -22,23 +17,23 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setUser(state, user) {
+    setUser (state, user) {
       state.user.uid = user.uid
       state.user.displayName = user.displayName
       state.user.photoURL = user.photoURL
       state.status = user.uid ? true : false
     },
-    setUsername(state, username) {
+    setUsername (state, username) {
       state.user.username = username
     },
-    isLoggedIn(state, status) {
+    isLoggedIn (state, status) {
       state.status = status
     }
   },
   actions: {
-    setUser({ commit }, { user }) {
+    setUser ({ commit }, { user }) {
       commit('setUser', user)
       commit('setUsername', user.username)
     }
   }
-})
+}

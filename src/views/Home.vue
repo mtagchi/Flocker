@@ -4,7 +4,19 @@
       <v-col cols="6" align="center" class="cta-left">
         <h1>ようこそ、新しい広場へ</h1>
         <p>FlockerはTwitterユーザーのための飲み会企画サービスです</p>
-        <v-btn width="168" color="primary">飲み会を開く</v-btn>
+        <div class="d-flex justify-center">
+          <v-btn
+            width="144"
+            color="primary"
+            class="mx-2"
+          >飲み会を開く</v-btn>
+          <v-btn
+            width="144"
+            color="secondary"
+            class="mx-2 black--text"
+            :to="{ name: 'About' }"
+          >Flockerについて</v-btn>
+        </div>
       </v-col>
       <v-col cols="6" align="center" class="cta-right">
         <v-img
@@ -14,15 +26,12 @@
       </v-col>
     </v-row>
 
-    <h2 class="latest-events-title px-5 d-flex align-center justify-space-between">新着イベント</h2>
-    <template v-if="events.length">
+    <div class="latest-events pt-2 px-5" v-if="events.length">
+      <h2 class="latest-events-title pb-2 d-flex align-center justify-space-between">新着イベント</h2>
       <v-card v-for="e in events" :key="e.id">
         <v-card-text>{{ e }}</v-card-text>
       </v-card>
-    </template>
-    <template v-else>
-      <span>No data.</span>
-    </template>
+    </div>
   </v-container>
 </template>
 
@@ -36,17 +45,22 @@ export default {
       events: []
     }
   },
-  async mounted () {
-    const db = firebase.firestore()
-    db.collection('events').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.events.push(doc.data())
-      })
-    })
+  mounted () {
+    this.getLatestEvents()
   },
   computed: {
     isLoggedIn () {
-      return this.$store.getters.isLoggedIn
+      return this.$store.getters['user/isLoggedIn']
+    }
+  },
+  methods: {
+    getLatestEvents () {
+      const db = firebase.firestore()
+      db.collection('events').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.events.push(doc.data())
+        })
+      })
     }
   }
 }

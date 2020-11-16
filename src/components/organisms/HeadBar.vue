@@ -21,7 +21,7 @@
       <v-card width="168">
         <v-list>
           <v-list-item>
-            <a :href="'https://twitter.com/' + user.username">
+            <a :href="'https://twitter.com/' + user.username" target="_blank">
               <v-list-item-icon class="mt-1 mb-1 mr-3">
                 <user-icon :user="user"/>
               </v-list-item-icon>
@@ -52,7 +52,7 @@
         </v-list>
       </v-card>
     </v-menu>
-    <login-btn v-else :user="user"/>
+    <login-btn v-else :user="user" v-on:login="login"/>
   </v-app-bar>
 </template>
 
@@ -70,18 +70,21 @@ export default {
     UserIcon
   },
   created: () => {
-    firebase.onAuth();
+    firebase.onAuth()
   },
   computed: {
-    user() {
-      return this.$store.getters.user
+    user () {
+      return this.$store.getters['user/get']
     },
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn
+    isLoggedIn () {
+      return this.$store.getters['user/isLoggedIn']
     }
   },
   methods: {
-    logout() {
+    login () {
+      firebase.login()
+    },
+    logout () {
       firebase.logout()
     }
   }

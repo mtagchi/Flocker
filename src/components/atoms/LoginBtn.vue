@@ -1,8 +1,8 @@
 <template>
   <v-btn
-    color="twitter"
+    color="primary"
     class="white--text"
-    @click="login"
+    @click="$emit('login')"
   >
     <span class="mr-1">Twitterでログイン</span>
     <v-icon>login</v-icon>
@@ -10,22 +10,10 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
-
 export default {
   name: 'LoginBtn',
-  created: () => {
-    firebase.onAuth();
-  },
-  computed: {
-    user() {
-      return this.$store.getters.user
-    }
-  },
-  methods: {
-    login() {
-      firebase.login()
-    }
+  props: {
+    user: {}
   }
 }
 </script>

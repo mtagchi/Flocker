@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import '@firebase/auth'
 import store from '@/store/index'
+import router from '@/router/index'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -37,7 +38,9 @@ export default {
     })
   },
   logout() {
-    firebase.auth().signOut()
+    firebase.auth().signOut().then(() => {
+      router.push({ name: 'Home' })
+    })
   },
   onAuth() {
     firebase.auth().onAuthStateChanged(currentUser => {

@@ -9,6 +9,7 @@
             width="144"
             color="primary"
             class="mx-2"
+            :to="{ name: 'EventNewPage' }"
           >飲み会を開く</v-btn>
           <v-btn
             width="144"

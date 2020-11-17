@@ -15,12 +15,12 @@ const firebaseConfig = {
 }
 
 export default {
-  init() {
+  init () {
     firebase.initializeApp(firebaseConfig)
     firebase.firestore()
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   },
-  login() {
+  login (callback) {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider).then((result) => {
       if (result.user) {
@@ -34,15 +34,18 @@ export default {
         const db = firebase.firestore()
         const users = db.collection('users')
         users.doc(currentUser.uid).set({ currentUser })
+        if (callback) callback()
       }
     })
   },
-  logout() {
+  logout () {
     firebase.auth().signOut().then(() => {
-      router.push({ name: 'Home' })
+      if (router.history.current.name !== 'Home') {
+        router.push({ name: 'Home' })
+      }
     })
   },
-  onAuth() {
+  onAuth () {
     firebase.auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
         const db = firebase.firestore()

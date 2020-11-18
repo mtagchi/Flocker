@@ -1,9 +1,15 @@
 <template>
-  <v-container>new event</v-container>
+  <form @submit.prevent="$emit('submit')">
+    
+  </form>
 </template>
 
 <script>
 export default {
-  name: 'EventForm'
+  name: 'EventForm',
+  props: {
+    event: {},
+    errors: {}
+  }
 }
 </script>

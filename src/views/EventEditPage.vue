@@ -1,5 +1,9 @@
 <template>
-  <event-form/>
+  <event-form
+    :errors="errors"
+    :event="event"
+    @submit="updateEvent"
+  />
 </template>
 
 <script>
@@ -9,6 +13,20 @@ export default {
   name: 'EventEditPage',
   components: {
     EventForm
+  },
+  data: () => {
+    return {
+      event: {},
+      errors: ''
+    }
+  },
+  mounted () {
+    // this.$store
+  },
+  methods: {
+    updateEvent: () => {
+      // this.$store.dispatch
+    }
   }
 }
 </script>

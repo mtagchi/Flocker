@@ -1,4 +1,4 @@
-# flocker
+# Flocker
 
 ## Project setup
 ```
@@ -13,6 +13,8 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
+
+firebase deploy
 ```
 
 ### Run your unit tests

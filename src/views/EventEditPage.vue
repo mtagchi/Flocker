@@ -21,11 +21,14 @@ export default {
     }
   },
   mounted () {
-    // this.$store
+    this.getEvent()
   },
   methods: {
     updateEvent: () => {
       // this.$store.dispatch
+    },
+    getEvent: () => {
+      
     }
   }
 }

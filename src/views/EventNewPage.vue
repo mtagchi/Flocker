@@ -28,9 +28,9 @@ export default {
   },
   methods: {
     createEvent: () => {
-      // this.$store.dispatch
       const db = firebase.firestore()
-      db.collection('events')
+      const events = db.collection('events')
+      events.add(this.event)
     }
   }
 }

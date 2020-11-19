@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 import EventForm from '@/components/templates/EventForm'
 
 export default {
@@ -28,6 +29,8 @@ export default {
   methods: {
     createEvent: () => {
       // this.$store.dispatch
+      const db = firebase.firestore()
+      db.collection('events')
     }
   }
 }

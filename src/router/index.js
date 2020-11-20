@@ -35,6 +35,11 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/events/:id',
+    name: 'EventShowPage',
+    component: EventShowPage
+  },
+  {
     path: '*',
     redirect: '/'
   }

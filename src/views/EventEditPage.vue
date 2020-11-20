@@ -1,7 +1,9 @@
 <template>
   <event-form
-    :errors="errors"
+    :loading="loading"
     :event="event"
+    :errors="errors"
+    :formType="formType"
     @submit="updateEvent"
   />
 </template>
@@ -16,19 +18,21 @@ export default {
   },
   data: () => {
     return {
+      loading: true,
       event: {},
-      errors: ''
+      errors: '',
+      formType: '更新'
     }
   },
   mounted () {
     this.getEvent()
   },
   methods: {
-    updateEvent: () => {
-      // this.$store.dispatch
+    updateEvent: function () {
+      this.loading = true
     },
-    getEvent: () => {
-      
+    getEvent: function () {
+      this.loading = false
     }
   }
 }

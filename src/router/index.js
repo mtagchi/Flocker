@@ -5,6 +5,7 @@ import store from '@/store/index'
 import Home from '@/views/Home'
 import EventNewPage from '@/views/EventNewPage'
 import EventEditPage from '@/views/EventEditPage'
+import EventShowPage from '@/views/EventShowPage'
 
 Vue.use(VueRouter)
 

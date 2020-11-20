@@ -1,52 +1,137 @@
 <template>
-  <form @submit.prevent="$emit('submit')">
-    <div v-if="errors.length !== 0">
-      <ul v-for="e in errors" :key="e">
-        <li><span style="color: red; ">{{ e }}</span></li>
-      </ul>
-    </div>
+  <v-container>
+    <v-row justify="center">
+      <v-card :loading="loading" class="pa-3" width="512px">
+        <v-form ref="form" v-model="valid" @submit.prevent="submit">
+          <v-card-title class="pt-3 px-2">
+            <h1>イベントを{{ formType }}</h1>
+          </v-card-title>
 
-    <div>
-      <label>日時</label>
-      <v-date-picker/>
-      <v-time-picker/>
-    </div>
+          <v-card-text class="mt-3">
+            <v-row justify="center" class="px-2">
+              <v-col xs6 class="py-0 pr-2 pl-0">
+                <v-menu
+                  :close-on-content-click="false"
+                  transition="scale-transition"
+                  offset-y
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="event.date"
+                      label="日付"
+                      prepend-icon="event"
+                      background-color="grey lighten-5"
+                      filled
+                      readonly
+                      v-on="on"
+                    />
+                  </template>
+                  <v-date-picker v-model="event.date"/>
+                </v-menu>
+              </v-col>
+              <v-col xs6 class="py-0 pr-0 pl-2">
+                <v-menu
+                  :close-on-content-click="false"
+                  transition="scale-transition"
+                  offset-y
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="event.time"
+                      label="時間"
+                      prepend-icon="access_time"
+                      background-color="grey lighten-5"
+                      filled
+                      readonly
+                      v-on="on"
+                    />
+                  </template>
+                  <v-time-picker v-model="event.time" format="24hr"/>
+                </v-menu>
+              </v-col>
+            </v-row>
 
-    <div>
-      <label>タイトル</label>
-      <input type="text">
-    </div>
+            <v-row justify="center" class="px-2">
+              <v-text-field
+                v-model="event.title"
+                label="タイトル"
+                maxlength="30"
+                :disabled="loading"
+                :rules="[v => !!v || 'タイトルを入力してください']"
+                color="primary"
+                background-color="grey lighten-5"
+                filled
+                required
+              />
+            </v-row>
 
-    <div>
-      <label>場所</label>
-      <input type="text">
-    </div>
+            <v-row justify="center" class="px-2">
+              <v-text-field
+                v-model="event.place"
+                label="場所"
+                maxlength="30"
+                :disabled="loading"
+                color="primary"
+                background-color="grey lighten-5"
+                filled
+              />
+            </v-row>
 
-    <div>
-      <label>説明</label>
-      <input type="text">
-    </div>
+            <v-row justify="center" class="px-2">
+              <v-textarea
+                v-model="event.text"
+                label="詳細"
+                maxlength="2000"
+                :disabled="loading"
+                color="primary"
+                background-color="grey lighten-5"
+                filled
+              />
+            </v-row>
+          </v-card-text>
 
-    <v-btn :disabled="!valid" color="primary" type="submit">作成</v-btn>
-  </form>
+          <v-card-actions>
+            <v-btn
+              type="submit"
+              :disabled="!valid"
+              color="primary"
+              block
+            >{{ formType }}</v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'EventForm',
   props: {
+    loading: Boolean,
     event: {},
-    errors: {}
+    errors: {},
+    formType: {}
   },
   data: () => {
     return {
-      valid: true
+      valid: true,
     }
   },
-  updated () {
-    if (this.$refs.form) {
-      this.$refs.form.resetValidation()
+  methods: {
+    submit: function () {
+      if (this.$refs.form.validate()) {
+        this.$emit('submit', this.event)
+      }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 512px) {
+  .container {
+    padding: 0;
+  }
+}
+</style>

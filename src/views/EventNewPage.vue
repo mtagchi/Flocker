@@ -1,7 +1,9 @@
 <template>
   <event-form
-    :errors="errors"
+    :loading="loading"
     :event="event"
+    :errors="errors"
+    :formType="formType"
     @submit="createEvent"
   />
 </template>
@@ -17,20 +19,27 @@ export default {
   },
   data: () => {
     return {
+      loading: false,
       event: {
-        datetime: '',
-        place: '',
+        date: '',
+        time: '',
         name: '',
+        place: '',
         text: ''
       },
-      errors: ''
+      errors: '',
+      formType: '作成'
     }
   },
   methods: {
-    createEvent: () => {
+    createEvent: function () {
+      this.loading = true
       const db = firebase.firestore()
       const events = db.collection('events')
-      events.add(this.event)
+      events.add(this.event).then(event => {
+        this.loading = false
+        this.$router.push({ path: `events/${event.id}` })
+      })
     }
   }
 }

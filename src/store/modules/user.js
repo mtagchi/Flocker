@@ -7,7 +7,7 @@ export default {
       username: "",
       photoURL: ""
     },
-    status: false
+    status: Boolean
   },
   getters: {
     get (state) {

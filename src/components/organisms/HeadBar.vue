@@ -3,12 +3,10 @@
     app
     color="secondary"
   >
-    <!-- 左側 -->
     <logo/>
 
     <v-spacer/>
 
-    <!-- 右側 -->
     <v-menu
       v-if="isLoggedIn"
       bottom
@@ -78,7 +76,7 @@ export default {
     UserIcon,
     Loading
   },
-  created: () => {
+  created () {
     firebase.onAuth()
   },
   computed: {

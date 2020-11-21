@@ -4,6 +4,16 @@
 
 <script>
 export default {
-  name: 'EventShowPage'
+  name: 'EventShowPage',
+  data: () => {
+    return {
+      loading: true
+    }
+  },
+  mounted () {
+    this.$nextTick(function () {
+      this.loading = false
+    })
+  }
 }
 </script>

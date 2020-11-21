@@ -19,7 +19,7 @@ export default {
   },
   data: () => {
     return {
-      loading: false,
+      loading: true,
       event: {
         date: '',
         time: '',
@@ -30,6 +30,11 @@ export default {
       errors: '',
       formType: '作成'
     }
+  },
+  mounted () {
+    this.$nextTick(function () {
+      this.loading = false
+    })
   },
   methods: {
     createEvent: function () {

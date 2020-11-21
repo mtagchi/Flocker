@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid :loading="loading">
     <v-row wrap align="center" class="cta">
       <v-col cols="6" align="center" class="cta-left">
         <h1>ようこそ、新しい広場へ</h1>
@@ -43,11 +43,15 @@ export default {
   name: 'Home',
   data: () => {
     return {
+      loading: true,
       events: []
     }
   },
   mounted () {
     this.getLatestEvents()
+    this.$nextTick(function () {
+      this.loading = false
+    })
   },
   computed: {
     isLoggedIn () {

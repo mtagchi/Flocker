@@ -113,11 +113,9 @@ export default {
     errors: {},
     formType: {}
   },
-  data: () => {
-    return {
-      valid: true,
-    }
-  },
+  data: () => ({
+    valid: true,
+  }),
   methods: {
     submit: function () {
       if (this.$refs.form.validate()) {

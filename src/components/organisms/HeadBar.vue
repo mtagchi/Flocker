@@ -3,8 +3,12 @@
     app
     color="secondary"
   >
+    <!-- 左側 -->
     <logo/>
+
     <v-spacer/>
+
+    <!-- 右側 -->
     <v-menu
       v-if="isLoggedIn"
       bottom
@@ -52,7 +56,10 @@
         </v-list>
       </v-card>
     </v-menu>
+
     <login-btn v-else :user="user" v-on:login="login"/>
+
+    <loading/>
   </v-app-bar>
 </template>
 
@@ -61,13 +68,15 @@ import firebase from '@/plugins/firebase'
 import Logo from '@/components/atoms/Logo'
 import LoginBtn from '@/components/atoms/LoginBtn'
 import UserIcon from '@/components/atoms/UserIcon'
+import Loading from '@/components/atoms/Loading'
 
 export default {
   name: 'HeadBar',
   components: {
     Logo,
     LoginBtn,
-    UserIcon
+    UserIcon,
+    Loading
   },
   created: () => {
     firebase.onAuth()

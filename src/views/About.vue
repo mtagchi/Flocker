@@ -6,14 +6,9 @@
 
 <script>
 export default {
-  data: () => {
-    return {
-      loading: true
-    }
-  },
   mounted () {
     this.$nextTick(function () {
-      this.loading = false
+      this.$store.dispatch('loading/end')
     })
   }
 }

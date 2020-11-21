@@ -17,23 +17,21 @@ export default {
   components: {
     EventForm
   },
-  data: () => {
-    return {
-      loading: true,
-      event: {
-        date: '',
-        time: '',
-        name: '',
-        place: '',
-        text: ''
-      },
-      errors: '',
-      formType: '作成'
-    }
-  },
+  data: () => ({
+    loading: false,
+    event: {
+      date: '',
+      time: '',
+      name: '',
+      place: '',
+      text: ''
+    },
+    errors: '',
+    formType: '作成'
+  }),
   mounted () {
     this.$nextTick(function () {
-      this.loading = false
+      this.$store.dispatch('loading/end')
     })
   },
   methods: {

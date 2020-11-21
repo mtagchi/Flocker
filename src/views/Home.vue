@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid :loading="loading">
+  <v-container>
     <v-row wrap align="center" class="cta">
       <v-col cols="6" align="center" class="cta-left">
         <h1>ようこそ、新しい広場へ</h1>
@@ -27,7 +27,7 @@
       </v-col>
     </v-row>
 
-    <div class="latest-events pt-2 px-5" v-if="events.length">
+    <div class="latest-events pt-2 px-5" justify="center">
       <h2 class="latest-events-title pb-2 d-flex align-center justify-space-between">新着イベント</h2>
       <v-card v-for="e in events" :key="e.id">
         <v-card-text>{{ e }}</v-card-text>
@@ -41,16 +41,13 @@ import firebase from 'firebase'
 
 export default {
   name: 'Home',
-  data: () => {
-    return {
-      loading: true,
-      events: []
-    }
-  },
+  data: () => ({
+    events: []
+  }),
   mounted () {
     this.getLatestEvents()
     this.$nextTick(function () {
-      this.loading = false
+      this.$store.dispatch('loading/end')
     })
   },
   computed: {

@@ -16,16 +16,17 @@ export default {
   components: {
     EventForm
   },
-  data: () => {
-    return {
-      loading: true,
-      event: {},
-      errors: '',
-      formType: '更新'
-    }
-  },
+  data: () => ({
+    loading: true,
+    event: {},
+    errors: '',
+    formType: '更新'
+  }),
   mounted () {
     this.getEvent()
+    this.$nextTick(function () {
+      this.$store.dispatch('loading/end')
+    })
   },
   methods: {
     updateEvent: function () {

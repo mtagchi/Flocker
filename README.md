@@ -1,5 +1,13 @@
 # Flocker
 
+## Project
+
+https://github.com/mtagchi/Flocker/projects/1
+
+## Issues
+
+https://github.com/mtagchi/Flocker/issues
+
 ## Project setup
 ```
 npm install

@@ -41,7 +41,14 @@ export default {
       const events = db.collection('events')
       events.add(this.event).then(event => {
         this.loading = false
-        this.$router.push({ path: `events/${event.id}` })
+        const flash = {
+          status: 'success',
+          message: 'イベントを作成しました'
+        }
+        this.$router.push(
+          { path: `events/${event.id}` },
+          () => this.$store.dispatch('flash/create', { flash: flash })
+        )
       })
     }
   }

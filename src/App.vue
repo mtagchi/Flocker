@@ -5,6 +5,7 @@
       <transition mode="out-in">
         <router-view/>
       </transition>
+      <flash/>
     </v-main>
     <foot-bar/>
   </v-app>
@@ -12,12 +13,14 @@
 
 <script>
 import HeadBar from '@/components/organisms/HeadBar'
+import Flash from '@/components/atoms/Flash'
 import FootBar from '@/components/molecules/FootBar'
 
 export default {
   name: 'App',
   components: {
     HeadBar,
+    Flash,
     FootBar
   }
 }

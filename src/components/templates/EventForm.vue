@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-card :loading="loading" class="pa-3" width="512px">
+      <v-card :loading="loading" class="px-3" width="512px">
         <v-form ref="form" v-model="valid" @submit.prevent="submit">
           <v-card-title class="pt-3 px-2">
             <h1>イベントを{{ formType }}</h1>
@@ -11,6 +11,7 @@
             <v-row justify="center" class="px-2">
               <v-col xs6 class="py-0 pr-2 pl-0">
                 <v-menu
+                  :disabled="loading"
                   :close-on-content-click="false"
                   transition="scale-transition"
                   offset-y
@@ -31,6 +32,7 @@
               </v-col>
               <v-col xs6 class="py-0 pr-0 pl-2">
                 <v-menu
+                  :disabled="loading"
                   :close-on-content-click="false"
                   transition="scale-transition"
                   offset-y

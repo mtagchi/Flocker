@@ -49,7 +49,7 @@ export default {
     firebase.auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
         const db = firebase.firestore()
-        db.collection('users').doc(currentUser.uid).get().then((doc) => {
+        db.collection('users').doc(currentUser.uid).get().then(doc => {
           if (doc.exists) {
             const user = doc.data().currentUser
             store.dispatch('user/auth', { user: user })

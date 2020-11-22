@@ -38,17 +38,19 @@ export default {
     createEvent: function () {
       this.loading = true
       const db = firebase.firestore()
-      const events = db.collection('events')
-      events.add(this.event).then(event => {
-        this.loading = false
-        const flash = {
-          status: 'success',
-          message: 'イベントを作成しました'
-        }
-        this.$router.push(
-          { path: `events/${event.id}` },
-          () => this.$store.dispatch('flash/create', { flash: flash })
-        )
+      const event = db.collection('events').doc()
+      event.get().then(doc => {
+        event.set(this.event).then(() => {
+          this.loading = false
+          const flash = {
+            status: 'success',
+            message: 'イベントを作成しました'
+          }
+          this.$router.push(
+            { name: 'EventShowPage', params: { id: doc.id } },
+            () => this.$store.dispatch('flash/create', { flash: flash })
+          )
+        })
       })
     }
   }

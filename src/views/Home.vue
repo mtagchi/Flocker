@@ -58,7 +58,7 @@ export default {
   methods: {
     getLatestEvents () {
       const db = firebase.firestore()
-      db.collection('events').orderBy('datetime', 'desc').limit(7).get().then(querySnapshot => {
+      db.collection('events').orderBy('createdAt', 'desc').limit(7).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
           this.events.push(doc.data())
         })

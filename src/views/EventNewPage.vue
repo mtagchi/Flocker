@@ -37,10 +37,19 @@ export default {
   methods: {
     createEvent: function () {
       this.loading = true
+      const newEvent = {
+        date: this.event.date,
+        time: this.event.time,
+        name: this.event.name,
+        place: this.event.place,
+        text: this.event.text,
+        createdAt: new Date(),
+        isTweeted: false
+      }
       const db = firebase.firestore()
       const event = db.collection('events').doc()
       event.get().then(doc => {
-        event.set(this.event).then(() => {
+        event.set(newEvent).then(() => {
           this.loading = false
           const flash = {
             status: 'success',

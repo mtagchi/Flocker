@@ -40,7 +40,7 @@ export default {
       const newEvent = {
         date: this.event.date,
         time: this.event.time,
-        name: this.event.name,
+        title: this.event.title,
         place: this.event.place,
         text: this.event.text,
         createdAt: new Date(),

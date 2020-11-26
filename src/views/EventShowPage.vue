@@ -1,5 +1,26 @@
 <template>
-  <v-container>event show page {{ event }}</v-container>
+  <v-container>
+    <transition>
+      <v-card v-if="event.isTweeted === false" class="mb-3">
+        <v-card-text class="d-flex pt-1 pb-0">
+          <v-row justify="center" align="center">作成したイベントをツイートしてフォロワーに告知しませんか？</v-row>
+          <v-btn fab small elevation="0" color="white" @click="getTweeted">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-text>
+        <v-card-actions class="pb-3">
+          <v-row justify="center">
+            <v-btn color="twitter" class="white--text">
+              <v-icon>mdi-twitter</v-icon>
+              <span class="pl-1">ツイートする</span>
+            </v-btn>
+          </v-row>
+        </v-card-actions>
+      </v-card>
+    </transition>
+
+    <v-card>event show page {{ event }}</v-card>
+  </v-container>
 </template>
 
 <script>
@@ -33,7 +54,23 @@ export default {
           )
         }
       })
+    },
+    getTweeted: function () {
+      const db = firebase.firestore()
+      db.collection('events').doc(this.$route.params.id).update({
+        isTweeted: true
+      })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.v-leave-active {
+    transition: opacity 1s
+}
+
+.v-enter, .v-leave-to{
+    opacity: 0;
+}
+</style>

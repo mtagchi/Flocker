@@ -12,7 +12,7 @@
           <v-row justify="center">
             <v-btn color="twitter" class="white--text">
               <v-icon>mdi-twitter</v-icon>
-              <span class="pl-1">ツイートする</span>
+              <span class="pl-1" @click="tweet">ツイートする</span>
             </v-btn>
           </v-row>
         </v-card-actions>
@@ -60,6 +60,14 @@ export default {
       db.collection('events').doc(this.$route.params.id).update({
         isTweeted: true
       })
+      this.event.isTweeted = true
+    },
+    tweet: function () {
+      const text = this.event.title
+      const eventURL = location.origin + this.$route.path
+      const url = `https://twitter.com/intent/tweet?text=${text}&url=${eventURL}`
+      window.open(url, '_blank');
+      this.getTweeted()
     }
   }
 }

@@ -29,11 +29,6 @@ export default {
     errors: '',
     formType: '作成'
   }),
-  mounted () {
-    this.$nextTick(function () {
-      this.$store.dispatch('loading/end')
-    })
-  },
   methods: {
     createEvent: function () {
       this.loading = true

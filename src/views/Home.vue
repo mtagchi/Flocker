@@ -46,9 +46,6 @@ export default {
   }),
   mounted () {
     this.getLatestEvents()
-    this.$nextTick(function () {
-      this.$store.dispatch('loading/end')
-    })
   },
   computed: {
     isLoggedIn () {

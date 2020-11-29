@@ -33,9 +33,6 @@ export default {
   }),
   mounted () {
     this.getEvent()
-    this.$nextTick(function () {
-      this.$store.dispatch('loading/end')
-    })
   },
   methods: {
     getEvent: function () {

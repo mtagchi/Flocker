@@ -31,6 +31,21 @@ export default {
     },
     getEvent: function () {
       this.loading = false
+      const db = firebase.firestore()
+      db.collection('events').doc(this.$route.params.id).get().then(doc => {
+        if (doc.exists) {
+          this.event = doc.data()
+        } else {
+          const flash = {
+            status: 'warning',
+            message: 'イベントは存在しません'
+          }
+          this.$router.push(
+            { name: 'Home' },
+            () => this.$store.dispatch('flash/create', { flash: flash })
+          )
+        }
+      })
     }
   }
 }

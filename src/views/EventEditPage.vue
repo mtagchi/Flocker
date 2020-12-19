@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 import EventForm from '@/components/templates/EventForm'
 
 export default {
